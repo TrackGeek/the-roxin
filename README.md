@@ -7,7 +7,7 @@
 </h1>
 
 <h4 align="center">
-  <samp>A dark 2D platformer where Roxin and his crew fight to defeat Mila, the world destroyer.</samp>
+  <samp>A dark 2D platformer where Roxin and his crew fight to defeat Mikah, the world destroyer.</samp>
 </h4>
 
 <p align="center">
