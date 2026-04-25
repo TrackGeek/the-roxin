@@ -107,3 +107,6 @@ InitTestScene*.unity*
 
 # ds_store files
 .DS_Store
+
+# vercel
+.vercel
