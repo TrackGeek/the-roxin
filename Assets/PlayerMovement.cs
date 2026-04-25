@@ -7,6 +7,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded = false;
+    private Animator animator;
+    private SpriteRenderer sr;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
@@ -15,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movimento horizontal
         float horizontal = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(horizontal * moveSpeed, rb.linearVelocity.y);
 
@@ -25,12 +32,20 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             isGrounded = false;
         }
-        
+
+        // Troca animação
+        if (!isGrounded)
+            animator.Play("RoxinJump");
+        else if (horizontal != 0)
+            animator.Play("RoxinWalk");
+        else
+            animator.Play("RoxinIdle");
+
         // Flip do sprite
         if (horizontal > 0)
-            transform.localScale = new Vector3(0.25f, 0.25f, 1f);
+            sr.flipX = false;
         else if (horizontal < 0)
-            transform.localScale = new Vector3(-0.25f, 0.25f, 1f);
+            sr.flipX = true;
     }
 
     void OnCollisionEnter2D(Collision2D col)
